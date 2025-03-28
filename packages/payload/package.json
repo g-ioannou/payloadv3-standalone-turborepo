@@ -1,0 +1,22 @@
+{
+  "name": "@repo/payload",
+  "type": "module",
+  "scripts": {
+    "generate:types": "payload generate:types"
+  },
+  "exports": {
+    "./config": {
+      "default": "./src/payload.config.ts"
+    },
+    "./types": {
+      "default": "./src/payload-types.ts"
+    }
+  },
+  "dependencies": {
+    "@payloadcms/db-sqlite": "^3.31.0",
+    "payload": "^3.31.0"
+  },
+  "devDependencies": {
+    "typescript": "latest"
+  }
+}

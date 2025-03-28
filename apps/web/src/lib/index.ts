@@ -1,1 +1,13 @@
-// place files you want to import through the `$lib` alias in this folder.
+import { buildConfig, getPayload as _getPayload } from 'payload';
+import { config } from '@repo/payload/config';
+
+export const getPayload = async () => {
+	try {
+		const payloadConfig = await buildConfig(config);
+		const payload = await _getPayload({ config: payloadConfig });
+		return payload;
+	} catch (e) {
+		console.error(e)
+
+	}
+};

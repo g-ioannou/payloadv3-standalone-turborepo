@@ -1,32 +1,45 @@
-# Turborepo Svelte starter
+# Turborepo with Payload V3 local api as package
 
-This Turborepo starter is maintained by the Turborepo core team.
+_Tested for local/node adapters_
 
-## Using this example
+A monorepo containing [Payload local API](https://payloadcms.com/docs/local-api/overview) as a package. This allows to use a typesafe API with anyother framework, as well as keeping the NextJs admin panel.
 
-Run the following command:
+## Structure
 
-```sh
-npx create-turbo@latest -e with-svelte
-```
+### Package: `payload`
 
-## What's inside?
+Contains the main **backend** logic of Payload:
 
-This Turborepo includes the following packages/apps:
+- Database configuration
+- Collection definiton
+- Email adapters
 
-### Apps and Packages
+...and all the other stuff that shouldn't be affected by frontend consumers.
 
-- `docs`: a [svelte-kit](https://kit.svelte.dev/) app
-- `web`: another [svelte-kit](https://kit.svelte.dev/) app
-- `ui`: a stub Svelte component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-plugin-svelte` and `eslint-config-prettier`)
+### App: `cms`
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+The NextJs app generated with the payload init command. Contains the admin panel. Also serves Payload's REST API.
+Used to define components used in the context of the Admin Panel, such as the _Lexical Editor_.
 
-### Utilities
+Uses the `payload` package.
 
-This Turborepo has some additional tools already setup for you:
+### App: `web`
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+A SvelteKit app consuming Payload's local API. Could be any framework.
+
+Uses the `payload` package.
+
+---
+
+### Notes
+
+- The `payload` package is just some shared code. `payload.config.ts` doesn't try to do anything other than defining the config. Building the config is left to the consumer. If we tried to build the config inside the package, we would also have to also configure its building and packaging process, which is a mess.
+
+### TODOs
+
+- [ ] Build and test deployments using `docker` & `docker compose`
+- [ ] Add commands:
+  - [ ] Preview workspace builds
+- [ ] Add CI/CD
+- [ ] Same linting rules accross workspaces
+- [ ] Check more `turborepo` stuff. Use it properly (cache, builds etc.)
