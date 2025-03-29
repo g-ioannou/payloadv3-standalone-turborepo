@@ -163,6 +163,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'payload-locked-documents';
+        value: number | PayloadLockedDocument;
+      } | null)
+    | ({
+        relationTo: 'payload-preferences';
+        value: number | PayloadPreference;
+      } | null)
+    | ({
+        relationTo: 'payload-migrations';
+        value: number | PayloadMigration;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -283,4 +295,3 @@ export interface Auth {
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}
 }
-
