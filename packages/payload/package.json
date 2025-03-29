@@ -2,7 +2,7 @@
   "name": "@repo/payload",
   "type": "module",
   "scripts": {
-    "generate:types": "payload generate:types"
+    "payload": "payload"
   },
   "exports": {
     "./config": {
@@ -10,10 +10,16 @@
     },
     "./types": {
       "default": "./src/payload-types.ts"
+    },
+    "./payload": {
+      "default": "./src/payload.ts"
     }
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "^3.31.0",
     "@payloadcms/db-sqlite": "^3.31.0",
+    "dotenv": "^16.4.7",
+    "dotenv-cli": "^8.0.0",
     "payload": "^3.31.0"
   },
   "devDependencies": {

@@ -11,13 +11,7 @@
 		"check-types": "tsc --noEmit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "eslint .",
-		"test:integration": "playwright test",
-		"test:unit": "vitest"
-	},
-	"dependencies": {
-		"payload": "^3.31.0",
-		"@payloadcms/db-sqlite": "latest"
+		"lint": "eslint ."
 	},
 	"devDependencies": {
         "@repo/payload": "workspace:*",
