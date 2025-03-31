@@ -11,6 +11,7 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export const config: Config = {
+  serverURL: process.env.PAYLOAD_PUBLIC_BACKEND_URL || '',
   admin: {
     user: Users.slug,
     importMap: {
@@ -27,7 +28,7 @@ export const config: Config = {
       connectionString: process.env.DATABASE_URL || ''
     },
     // prodMigrations: migrations, // this will cause turbo build to stall
-    push: false,
+    push: false
   }),
   plugins: [
     // storage-adapter-placeholder
